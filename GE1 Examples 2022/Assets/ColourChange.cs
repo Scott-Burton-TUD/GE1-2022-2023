@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ColourChange : MonoBehaviour
 {
-
     public Material rainbow;
     public Color32[] colors;
 
@@ -38,7 +37,5 @@ public class ColourChange : MonoBehaviour
             }
             i++;
         }
-
-
     }
 }

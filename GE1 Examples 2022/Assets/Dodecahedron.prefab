@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8709955154599100502}
   - component: {fileID: 6862093134162474140}
   - component: {fileID: 1074425840878065982}
-  - component: {fileID: 1550389761364868309}
+  - component: {fileID: 2347541452323755881}
   m_Layer: 0
   m_Name: Dodecahedron
   m_TagString: Untagged
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 90
---- !u!114 &1550389761364868309
+--- !u!114 &2347541452323755881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,8 +107,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4916788576798709065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07faa5787d23b549b797fd4929f3190, type: 3}
+  m_Script: {fileID: 11500000, guid: aff3d6f65c673d2488ee5f46684e4a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rainbow: {fileID: 0}
-  colors: []
+  DodecahedronMeshRenderer: {fileID: 6862093134162474140}
+  lerpTime: 1
+  myColors:
+  - {r: 0.9245283, g: 0, b: 0, a: 0}
+  - {r: 0.9245283, g: 0.48690498, b: 0, a: 0}
+  - {r: 1, g: 0.9300531, b: 0, a: 0}
+  - {r: 0.14805162, g: 1, b: 0, a: 0}
+  - {r: 0, g: 0.7005632, b: 1, a: 0}
+  - {r: 0.13853693, g: 0, b: 1, a: 0}
+  - {r: 1, g: 0, b: 0.62768936, a: 0}

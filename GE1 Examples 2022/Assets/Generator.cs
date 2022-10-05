@@ -6,6 +6,7 @@ using UnityEngine;
 public class Generator : MonoBehaviour
 {
     public int loops = 4;
+    public GameObject color;
     public GameObject prefab;
     public int numberofObejcts = 100;
 
