@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
-    public Transform head;
-    public Transform tail;
+
+    public GameObject head;
+    public GameObject tail;
+    public GameObject fish;
+
     [Range(0.0f, 5.0f)]
-    public float frequency = 0.5f;
-    public float headAmplitude = 40;
-    public float tailAmplitude = 60;
-    public float theta = 0;
+    public float Frequency;
 
-    void Start()
-    {
-        theta = 0;
-    }
-
+    public int HeadAmplitude;
+    public int TailAmplitude;
+    public int FishAmplitude;
+    public float theta;
+    
     void Update()
     {
-        
+
+        Frequency += theta * Time.deltaTime;
+        float HeadMovement = Mathf.Sin(Frequency) * HeadAmplitude;
+        float TailMovement = Mathf.Sin(Frequency) * TailAmplitude;
+        float FishMovement = Mathf.Sin(Frequency) * FishAmplitude;
+
+        head.transform.localRotation = Quaternion.AngleAxis(HeadMovement, new Vector3(0, 0, 200));
+        tail.transform.localRotation = Quaternion.AngleAxis(TailMovement, new Vector3(0, 0, 200));
+        fish.transform.localRotation = Quaternion.AngleAxis(FishMovement, new Vector3(0, 0, 200));
+
+
+
+
     }
 }

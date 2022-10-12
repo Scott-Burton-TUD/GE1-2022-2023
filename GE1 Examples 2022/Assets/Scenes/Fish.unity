@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199475487}
   m_LocalRotation: {x: -0, y: -0, z: 0.25191477, w: 0.9677494}
-  m_LocalPosition: {x: 2.37, y: -1.91, z: -22.5457}
+  m_LocalPosition: {x: -1.39, y: -3.66, z: -22.5457}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -214,7 +214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531281186}
   m_LocalRotation: {x: -0, y: -0, z: -0.01122515, w: 0.999937}
-  m_LocalPosition: {x: 3.7100003, y: 3.0500002, z: 22.5457}
+  m_LocalPosition: {x: 7.92, y: 1.99, z: 22.5457}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -552,7 +552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047394789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 1.02, y: -0.75, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -585,14 +585,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101686500}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.1519635, w: 0.9883861}
+  m_LocalPosition: {x: 1.84, y: -2.85, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1139670876}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -17.481}
 --- !u!65 &1101686502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -685,12 +685,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed9403048c57c1469f014b191f895ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 199475488}
-  tail: {fileID: 458981996}
-  frequency: 0.5
-  headAmplitude: 40
-  tailAmplitude: 60
-  theta: 0
+  head: {fileID: 199475487}
+  tail: {fileID: 458981995}
+  fish: {fileID: 1139670874}
+  Frequency: 5
+  HeadAmplitude: 10
+  TailAmplitude: 10
+  FishAmplitude: 0
+  theta: 5
 --- !u!4 &1139670876
 Transform:
   m_ObjectHideFlags: 0
