@@ -1,15 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PhysicsFactory : MonoBehaviour {
+public class PhysicsFactory : MonoBehaviour
+{
 
     public LayerMask groundLM;
     public GameObject wormPrefab;
-    void CreateTower(float radius, int height, int segments, Vector3 point)
+    void CreateTower(float radius, int height, int segment, Vector3 spawn)
     {
+        float create = (Mathf.PI * 2.0f) / (float)segment;
+        for (int h = 0; h < height; h++)
+        {
+            for (int i = 0; i < segment; i++)
+            {
+                float theta = create * i + (h * create * 0.5f);
+
+                float x = radius * Mathf.Sin(theta);
+                float z = radius * Mathf.Cos(theta);
+
+                Vector3 pos = spawn + new Vector3(x, h, z);
+                GameObject cube = CreateBrick(pos.x, pos.y, pos.z, 1, 1, 1);
+
+                cube.transform.rotation = Quaternion.AngleAxis(theta * Mathf.Rad2Deg, Vector3.up);
+
+                cube.GetComponent<Renderer>().material.color = Color.HSVToRGB(Random.Range(0.0f, 1.0f), 1, 0.6f);
+            }
+        }
+
     }
 
-    
+
 
     void CreateWorm(Vector3 point, Quaternion q)
     {
@@ -56,11 +76,11 @@ public class PhysicsFactory : MonoBehaviour {
         {
             GameObject wheel = CreateCylinder(
                 wheelPosition.x
-                ,wheelPosition.y
-                ,wheelPosition.z
-                ,wheelDiameter
-                ,wheelWidth
-                ,q
+                , wheelPosition.y
+                , wheelPosition.z
+                , wheelDiameter
+                , wheelWidth
+                , q
             );
             HingeJoint hinge = wheel.AddComponent<HingeJoint>();
             hinge.connectedBody = chassis.GetComponent<Rigidbody>();
@@ -68,15 +88,16 @@ public class PhysicsFactory : MonoBehaviour {
             hinge.anchor = Vector3.up;
             hinge.autoConfigureConnectedAnchor = true;
         }
-        
-        
+
+
         return chassis;
-       
-    }   
+
+    }
 
 
     // Use this for initialization
-    void Start () {       
+    void Start()
+    {
     }
 
     GameObject CreateGear(float x, float y, float z, float diameter, int numCogs)
@@ -88,16 +109,16 @@ public class PhysicsFactory : MonoBehaviour {
         float thetaInc = (Mathf.PI * 2.0f) / numCogs;
         for (int i = 0; i < numCogs; i++)
         {
-            
+
             float theta = thetaInc * i;
             Vector3 cogPos = new Vector3();
             cogPos.x = x + (Mathf.Sin(theta) * radius);
-            cogPos.y = y + (Mathf.Cos(theta) * radius);  
+            cogPos.y = y + (Mathf.Cos(theta) * radius);
             cogPos.z = z;
 
             // Make the cog rotation
-            Quaternion cogQ = Quaternion.AngleAxis(- theta * Mathf.Rad2Deg, Vector3.forward);
-            
+            Quaternion cogQ = Quaternion.AngleAxis(-theta * Mathf.Rad2Deg, Vector3.forward);
+
             GameObject cog = CreateBrick(cogPos.x, cogPos.y, cogPos.z);
             cog.transform.rotation = cogQ;
             FixedJoint joint = cog.AddComponent<FixedJoint>();
@@ -121,7 +142,7 @@ public class PhysicsFactory : MonoBehaviour {
 
     void CreateWall(int width, int height)
     {
-        
+
         for (int y = height - 1; y >= 0; y--)
         {
             for (int x = 0; x < width; x++)
@@ -130,12 +151,14 @@ public class PhysicsFactory : MonoBehaviour {
             }
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         if (Input.GetKeyDown(KeyCode.C))
         {
+            Debug.Log("pressed C to create car");
             RaycastHit raycastHit;
             GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out raycastHit))
@@ -166,20 +189,21 @@ public class PhysicsFactory : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.U))
         {
+            Debug.Log("spawned tower");
             RaycastHit rch;
-            GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");            
+            GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out rch, 100))
             {
                 Vector3 p = rch.point;
                 p.y = 0.5f;
-                CreateTower(3, 10, 12, p);
+                CreateTower(3, 10, 11, p);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.I))
         {
             RaycastHit rch;
-            GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");            
+            GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out rch, 100, groundLM))
             {
                 Vector3 p = rch.point;
